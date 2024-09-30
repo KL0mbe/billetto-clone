@@ -221,13 +221,25 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ),
                                         const Spacer(),
-                                        MyButton(
-                                          onPressed: () {},
-                                          color: Colors.white,
-                                          text: "Kontakt",
-                                        ),
+                                        if (MediaQuery.of(context).size.width >
+                                            420) ...[
+                                          MyButton(
+                                            onPressed: () {},
+                                            color: Colors.white,
+                                            text: "Kontakt",
+                                          ),
+                                        ],
                                       ],
                                     ),
+                                    if (MediaQuery.of(context).size.width <=
+                                        420) ...[
+                                      const SizedBox(height: 16),
+                                      MyButton(
+                                        onPressed: () {},
+                                        color: Colors.white,
+                                        text: "Kontakt",
+                                      ),
+                                    ],
                                     if (isExpanded2) ...[
                                       const Padding(
                                         padding:
@@ -342,24 +354,38 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 color: kGrey300,
                                                 size: 20,
                                               ),
-                                              const SizedBox(width: 16),
-                                              const Text(
-                                                "Spillestedet Stengade, Stengade 18, 2200 København",
-                                                style: kCardTextStyle,
-                                              ),
-                                              const Spacer(),
                                               if (MediaQuery.of(context)
                                                       .size
                                                       .width >
-                                                  610)
+                                                  430) ...[
+                                                const SizedBox(width: 16),
+                                                const Text(
+                                                  "Spillestedet Stengade, Stengade 18, 2200 København",
+                                                  style: kCardTextStyle,
+                                                ),
+                                              ],
+                                              if (MediaQuery.of(context)
+                                                      .size
+                                                      .width >
+                                                  610) ...[
+                                                const Spacer(),
                                                 MyButton(
                                                   onPressed: () {},
                                                   color: Colors.white,
                                                   text: "Kørselsvejledning",
                                                 ),
+                                              ],
                                             ],
                                           ),
                                         ),
+                                        if (MediaQuery.of(context).size.width <=
+                                            430) ...[
+                                          const SizedBox(height: 16),
+                                          const Text(
+                                            "Spillestedet Stengade, Stengade 18, 2200 København",
+                                            style: kCardTextStyle,
+                                          ),
+                                        ],
                                         if (MediaQuery.of(context).size.width <=
                                             610) ...[
                                           const SizedBox(height: 16),
@@ -801,17 +827,23 @@ class _HomeScreenState extends State<HomeScreen> {
             // newsLetter
             Row(
               children: [
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CardTitle(
+                    const CardTitle(
                       title: "Vil du se flere events?",
                     ),
-                    SizedBox(height: 16),
-                    Text(
-                      "Tilmeld dig her og modtag en række udvalgte events direkte i din indbakke",
-                      style: kCardTextStyle,
-                    ),
+                    const SizedBox(height: 16),
+                    MediaQuery.of(context).size.width > 500
+                        ? const Text(
+                            "Tilmeld dig her og modtag en række udvalgte events direkte i din indbakke",
+                            style: kCardTextStyle,
+                          )
+                        : const Text(
+                            "Tilmeld dig her og modtag en række\n"
+                            "udvalgte events direkte i din indbakke",
+                            style: kCardTextStyle,
+                          ),
                   ],
                 ),
                 const Spacer(),
@@ -829,13 +861,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             if (MediaQuery.of(context).size.width <= 930) ...[
-              const Row(
+              const Wrap(
+                spacing: 16,
+                runSpacing: 16,
                 children: [
                   SizedBox(
                     width: 300,
                     child: MyTextField(hintText: "Din email"),
                   ),
-                  SizedBox(width: 16),
                   SizedBox(
                     width: 100,
                     child: MyElevatedButton(title: "Tilmeld"),

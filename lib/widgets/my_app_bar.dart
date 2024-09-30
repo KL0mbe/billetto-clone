@@ -33,9 +33,9 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
               height: 50,
             ),
           ),
-          const SizedBox(
-            width: 300,
-            child: MyTextField(
+          SizedBox(
+            width: MediaQuery.of(context).size.width > 500 ? 300 : 180,
+            child: const MyTextField(
               hintText: "Søg efter events",
               prefixIcon: Icon(
                 Icons.search,
